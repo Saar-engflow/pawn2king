@@ -260,17 +260,17 @@ export function AddictionTracker() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
-          <div>
+          <div className="w-full md:w-auto">
             <div className="flex items-center gap-2 mb-2 text-indigo-600">
-              <ShieldAlert className="w-4 h-4" />
+              <ShieldAlert className="w-4 h-4 flex-shrink-0" />
               <span className="text-[10px] font-bold uppercase tracking-[0.3em]">War Room // Fortress Status</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-black italic tracking-tighter text-slate-900">ADDICTION TRACKER</h1>
+            <h1 className="text-4xl md:text-6xl font-black italic tracking-tighter text-slate-900 break-words leading-none">ADDICTION TRACKER</h1>
           </div>
           
           <Dialog open={isAdding} onOpenChange={setIsAdding}>
             <DialogTrigger asChild>
-              <Button className="h-14 px-8 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-black uppercase tracking-widest shadow-lg">
+              <Button className="w-full md:w-auto h-14 px-8 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-black uppercase tracking-widest shadow-lg">
                 NEW BATTLE
                 <Plus className="ml-2 w-5 h-5" />
               </Button>
@@ -493,15 +493,15 @@ export function AddictionTracker() {
                 </div>
 
                 {/* Counter */}
-                <div className="grid grid-cols-4 gap-4 mb-10">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
                   {[
                     { label: "DAYS", value: days },
                     { label: "HOURS", value: hours },
                     { label: "MINS", value: minutes },
                     { label: "SECS", value: seconds },
                   ].map((unit, i) => (
-                    <div key={i} className="bg-slate-50 rounded-2xl p-4 text-center border border-slate-100">
-                      <div className="text-3xl font-black text-indigo-600 tabular-nums">{unit.value}</div>
+                    <div key={i} className="bg-slate-50 rounded-2xl p-3 sm:p-4 text-center border border-slate-100">
+                      <div className="text-2xl sm:text-3xl font-black text-indigo-600 tabular-nums">{unit.value}</div>
                       <div className="text-[8px] font-black text-slate-400 tracking-widest">{unit.label}</div>
                     </div>
                   ))}

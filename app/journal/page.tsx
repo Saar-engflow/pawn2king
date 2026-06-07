@@ -150,9 +150,12 @@ export default function JournalPage() {
   return (
     <div className="flex h-screen overflow-hidden bg-[#F8FAFC]">
       <Sidebar />
-      <main className="flex-1 flex overflow-hidden">
+      <main className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
         {/* Internal Sidebar - Journal List */}
-        <div className="w-80 md:w-96 border-r border-slate-200 flex flex-col bg-white shrink-0">
+        <div className={cn(
+          "w-full md:w-80 lg:w-96 border-r border-slate-200 flex flex-col bg-white shrink-0 transition-all duration-300",
+          selectedId && "hidden md:flex"
+        )}>
           <div className="p-6 pb-2">
             <div className="flex items-center justify-between mb-6">
               <div>
@@ -265,7 +268,7 @@ export default function JournalPage() {
         {/* Editor Area */}
         <div className={cn(
           "flex-1 flex flex-col bg-slate-50/50 p-4 md:p-8 overflow-y-auto transition-all duration-500",
-          selectedId && "fixed inset-0 z-[60] bg-white p-0 md:p-0"
+          selectedId ? "fixed inset-0 z-[60] md:relative md:z-0 bg-white md:bg-slate-50/50 p-0 md:p-8" : "hidden md:flex"
         )}>
           {activeJournal ? (
             <JournalEditor

@@ -139,28 +139,28 @@ export default function CalendarPage() {
     <div className="flex h-screen overflow-hidden bg-background">
       <Sidebar />
       <main className="flex-1 overflow-y-auto">
-        <div className="p-8">
+        <div className="p-4 md:p-8">
           <Tabs defaultValue="calendar" className="w-full">
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-6 mb-8">
               <div>
-                <h1 className="text-4xl font-black italic tracking-tighter text-slate-900 uppercase">MISSION CALENDAR</h1>
-                <p className="text-slate-500 font-medium">Strategic overview of your progress and objectives.</p>
+                <h1 className="text-3xl md:text-4xl font-black italic tracking-tighter text-slate-900 uppercase">MISSION CALENDAR</h1>
+                <p className="text-slate-500 font-medium text-sm">Strategic overview of your progress and objectives.</p>
               </div>
-              <TabsList className="bg-slate-100 p-1 rounded-2xl h-14">
-                <TabsTrigger value="calendar" className="rounded-xl px-6 font-bold uppercase tracking-widest text-[10px] data-[state=active]:bg-white data-[state=active]:text-indigo-600 data-[state=active]:shadow-sm h-full">
-                  <CalendarIcon className="w-4 h-4 mr-2" />
+              <TabsList className="bg-slate-100 p-1 rounded-2xl h-auto xl:h-14 flex flex-wrap xl:flex-nowrap gap-1">
+                <TabsTrigger value="calendar" className="flex-1 xl:flex-none rounded-xl px-4 md:px-6 py-2 xl:py-0 font-bold uppercase tracking-widest text-[9px] md:text-[10px] data-[state=active]:bg-white data-[state=active]:text-indigo-600 data-[state=active]:shadow-sm h-full">
+                  <CalendarIcon className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5 md:mr-2" />
                   Full Calendar
                 </TabsTrigger>
-                <TabsTrigger value="routine" className="rounded-xl px-6 font-bold uppercase tracking-widest text-[10px] data-[state=active]:bg-white data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm h-full">
-                  <Activity className="w-4 h-4 mr-2" />
+                <TabsTrigger value="routine" className="flex-1 xl:flex-none rounded-xl px-4 md:px-6 py-2 xl:py-0 font-bold uppercase tracking-widest text-[9px] md:text-[10px] data-[state=active]:bg-white data-[state=active]:text-emerald-600 data-[state=active]:shadow-sm h-full">
+                  <Activity className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5 md:mr-2" />
                   Daily Routine
                 </TabsTrigger>
-                <TabsTrigger value="goals" className="rounded-xl px-6 font-bold uppercase tracking-widest text-[10px] data-[state=active]:bg-white data-[state=active]:text-amber-600 data-[state=active]:shadow-sm h-full">
-                  <Target className="w-4 h-4 mr-2" />
+                <TabsTrigger value="goals" className="flex-1 xl:flex-none rounded-xl px-4 md:px-6 py-2 xl:py-0 font-bold uppercase tracking-widest text-[9px] md:text-[10px] data-[state=active]:bg-white data-[state=active]:text-amber-600 data-[state=active]:shadow-sm h-full">
+                  <Target className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5 md:mr-2" />
                   Goals
                 </TabsTrigger>
-                <TabsTrigger value="addiction" className="rounded-xl px-6 font-bold uppercase tracking-widest text-[10px] data-[state=active]:bg-white data-[state=active]:text-red-600 data-[state=active]:shadow-sm h-full">
-                  <Activity className="w-4 h-4 mr-2" />
+                <TabsTrigger value="addiction" className="flex-1 xl:flex-none rounded-xl px-4 md:px-6 py-2 xl:py-0 font-bold uppercase tracking-widest text-[9px] md:text-[10px] data-[state=active]:bg-white data-[state=active]:text-red-600 data-[state=active]:shadow-sm h-full">
+                  <Activity className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5 md:mr-2" />
                   Addiction Tracker
                 </TabsTrigger>
               </TabsList>

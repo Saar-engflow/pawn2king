@@ -548,6 +548,9 @@
                  className="object-contain"
                /> 
              </div> 
+             <h1 className="text-3xl font-black tracking-tight text-slate-900 uppercase italic mb-2">
+               pawn2king
+             </h1>
            </div> 
  
            <form onSubmit={handleSubmit} className="space-y-4"> 

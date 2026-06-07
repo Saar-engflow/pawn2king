@@ -418,9 +418,9 @@ export function GoalsManager() {
           </div>
         </div>
 
-        <div className="flex-1 flex flex-col lg:flex-row min-h-0">
+        <div className="flex-1 flex flex-col lg:flex-row min-h-0 overflow-y-auto lg:overflow-hidden">
           {/* Left Column: Sidebar info - Independent Scroll Area */}
-          <ScrollArea className="w-full lg:w-80 border-b lg:border-b-0 lg:border-r border-slate-50 bg-slate-50/10 shrink-0">
+          <div className="w-full lg:w-80 border-b lg:border-b-0 lg:border-r border-slate-50 bg-slate-50/10 shrink-0 overflow-y-auto lg:h-full">
             <div className="p-6 md:p-8">
               <section className="mb-8">
                 <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Tactical Overview</h3>
@@ -614,9 +614,9 @@ export function GoalsManager() {
           </ScrollArea>
 
           {/* Right Column: Progress Feed & Update Input - Independent Scroll Area */}
-          <div className="flex-1 flex flex-col bg-white min-h-0">
+          <div className="flex-1 flex flex-col bg-white min-h-0 lg:h-full">
             {/* Updates Feed - Scrollable Inner Card */}
-            <ScrollArea className="flex-1">
+            <div className="flex-1 overflow-y-auto">
               <div className="p-6 md:p-8">
                 <div className="max-w-2xl mx-auto space-y-8">
                   <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-4">

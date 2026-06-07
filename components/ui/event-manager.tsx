@@ -189,64 +189,66 @@ export function EventManager({
   }, [currentDate])
 
   const renderMonthView = () => (
-    <div className="grid grid-cols-7 gap-px bg-muted rounded-lg overflow-hidden border">
-      {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(day => (
-        <div key={day} className="bg-background p-2 text-center text-xs font-medium text-muted-foreground">{day}</div>
-      ))}
-      {daysInMonth.map((day, i) => {
-        const dateString = day ? day.toISOString().split('T')[0] : null;
-        const isMissed = dateString && missedDays.includes(dateString);
+    <div className="w-full overflow-x-auto">
+      <div className="min-w-[700px] grid grid-cols-7 gap-px bg-muted rounded-lg overflow-hidden border">
+        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(day => (
+          <div key={day} className="bg-background p-2 text-center text-xs font-medium text-muted-foreground">{day}</div>
+        ))}
+        {daysInMonth.map((day, i) => {
+          const dateString = day ? day.toISOString().split('T')[0] : null;
+          const isMissed = dateString && missedDays.includes(dateString);
 
-        return (
-          <div 
-            key={i} 
-            className={cn(
-              "bg-background min-h-[100px] p-2 transition-colors hover:bg-accent/50 cursor-pointer border-t border-l first:border-l-0", 
-              !day && "bg-muted/30",
-              isMissed && "bg-red-500/10 border-red-200" // Highlight missed days with a subtle red tint
-            )}
-          >
-            {day && (
-              <>
-                <div className={cn(
-                  "flex items-center justify-between mb-1",
-                  isMissed && "text-red-600 font-bold"
-                )}>
+          return (
+            <div 
+              key={i} 
+              className={cn(
+                "bg-background min-h-[100px] p-2 transition-colors hover:bg-accent/50 cursor-pointer border-t border-l first:border-l-0", 
+                !day && "bg-muted/30",
+                isMissed && "bg-red-500/10 border-red-200" // Highlight missed days with a subtle red tint
+              )}
+            >
+              {day && (
+                <>
                   <div className={cn(
-                    "text-sm font-medium", 
-                    day.toDateString() === new Date().toDateString() && "text-primary font-bold underline decoration-2 underline-offset-4"
+                    "flex items-center justify-between mb-1",
+                    isMissed && "text-red-600 font-bold"
                   )}>
-                    {day.getDate()}
-                  </div>
-                  {isMissed && (
-                    <div className="text-[8px] font-black uppercase tracking-tighter bg-red-600 text-white px-1 rounded leading-tight">
-                      Missed
+                    <div className={cn(
+                      "text-sm font-medium", 
+                      day.toDateString() === new Date().toDateString() && "text-primary font-bold underline decoration-2 underline-offset-4"
+                    )}>
+                      {day.getDate()}
                     </div>
-                  )}
-                </div>
-                <div className="flex flex-col gap-1">
-                  {filteredEvents
-                    .filter(e => e.startTime.toDateString() === day.toDateString())
-                    .map(e => (
-                      <div
-                        key={e.id}
-                        onClick={(ev) => {
-                          ev.stopPropagation()
-                          setSelectedEvent(e)
-                          setIsCreating(false)
-                          setIsDialogOpen(true)
-                        }}
-                        className={cn("text-[10px] px-1.5 py-0.5 rounded truncate", colors.find(c => c.value === e.color)?.bg, "text-white")}
-                      >
-                        {e.title}
+                    {isMissed && (
+                      <div className="text-[8px] font-black uppercase tracking-tighter bg-red-600 text-white px-1 rounded leading-tight">
+                        Missed
                       </div>
-                    ))}
-                </div>
-              </>
-            )}
-          </div>
-        );
-      })}
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    {filteredEvents
+                      .filter(e => e.startTime.toDateString() === day.toDateString())
+                      .map(e => (
+                        <div
+                          key={e.id}
+                          onClick={(ev) => {
+                            ev.stopPropagation()
+                            setSelectedEvent(e)
+                            setIsCreating(false)
+                            setIsDialogOpen(true)
+                          }}
+                          className={cn("text-[10px] px-1.5 py-0.5 rounded truncate", colors.find(c => c.value === e.color)?.bg, "text-white")}
+                        >
+                          {e.title}
+                        </div>
+                      ))}
+                  </div>
+                </>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   )
 
@@ -285,24 +287,24 @@ export function EventManager({
 
   return (
     <div className={cn("flex flex-col gap-4 p-4", className)}>
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-2 sm:gap-4 overflow-x-auto pb-2 sm:pb-0">
+          <h2 className="text-lg sm:text-2xl font-bold whitespace-nowrap">
             {currentDate.toLocaleDateString("en-US", { month: "long", year: "numeric" })}
           </h2>
-          <div className="flex items-center gap-1">
-            <Button variant="outline" size="icon" onClick={() => navigateDate("prev")}><ChevronLeft className="h-4 w-4" /></Button>
-            <Button variant="outline" size="sm" onClick={() => setCurrentDate(new Date())}>Today</Button>
-            <Button variant="outline" size="icon" onClick={() => navigateDate("next")}><ChevronRight className="h-4 w-4" /></Button>
+          <div className="flex items-center gap-1 shrink-0">
+            <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => navigateDate("prev")}><ChevronLeft className="h-4 w-4" /></Button>
+            <Button variant="outline" size="sm" className="h-8 text-[10px]" onClick={() => setCurrentDate(new Date())}>Today</Button>
+            <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => navigateDate("next")}><ChevronRight className="h-4 w-4" /></Button>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 border rounded-md p-1 bg-muted/50">
-            <Button variant={view === "month" ? "secondary" : "ghost"} size="sm" onClick={() => setView("month")}><Grid3x3 className="mr-2 h-4 w-4" />Month</Button>
-            <Button variant={view === "list" ? "secondary" : "ghost"} size="sm" onClick={() => setView("list")}><List className="mr-2 h-4 w-4" />List</Button>
+          <div className="flex items-center gap-1 border rounded-md p-1 bg-muted/50 shrink-0">
+            <Button variant={view === "month" ? "secondary" : "ghost"} size="sm" className="h-8 text-[10px] px-2" onClick={() => setView("month")}><Grid3x3 className="mr-1 h-3 w-3" />Month</Button>
+            <Button variant={view === "list" ? "secondary" : "ghost"} size="sm" className="h-8 text-[10px] px-2" onClick={() => setView("list")}><List className="mr-1 h-3 w-3" />List</Button>
           </div>
-          <Button onClick={() => { setIsCreating(true); setIsDialogOpen(true); }}>
-            <Plus className="mr-2 h-4 w-4" />New Event
+          <Button size="sm" className="h-8 text-[10px] px-3 flex-1 sm:flex-none" onClick={() => { setIsCreating(true); setIsDialogOpen(true); }}>
+            <Plus className="mr-1 h-3 w-3" />New Event
           </Button>
         </div>
       </div>
